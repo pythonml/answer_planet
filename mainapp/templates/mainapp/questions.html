@@ -1,0 +1,25 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+<div class="row justify-content-center" style="margin-top: 2rem;">
+  <div class="col-4" id="scorebar">
+   <span class="align-text-top">积分</span>
+   <span class="align-middle" id="score">0</span>
+  </div>
+</div>
+<div class="row justify-content-center" style="margin-top: 2rem;">
+  <div class="col-10">
+    <div class="card shadow">
+      <div class="card-body" style="height: 24rem;">
+        <h5 class="card-title text-center">第一题</h5>
+        <p class="card-text text-center">Python之父是哪个国家的人？</p>
+        <div id="options">
+          <div class="border border-secondary rounded-pill opt-content">A. 中国</div>
+          <div class="border border-secondary rounded-pill opt-content">B. 美国</div>
+          <div class="border border-secondary rounded-pill opt-content">C. 法国</div>
+          <div class="border border-secondary rounded-pill opt-content">D. 荷兰</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

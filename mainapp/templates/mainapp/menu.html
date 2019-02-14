@@ -1,0 +1,24 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+<div class="text-center" id="brand">
+  <img src="/static/img/logo.jpg" id="logo" alt width="72" height="72">
+  <p class="lead" id="brandname">Python与数据分析</p>
+</div>
+<div id="menu">
+  <div class="row justify-content-center">
+    <div class="text-center col-9">
+      <button type="button" class="btn btn-primary rounded-pill col-10 menu-btn" id="btn-answer">开始答题</button>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="text-center col-9">
+      <button type="button" class="btn btn-primary rounded-pill col-10 menu-btn" id="btn-leader">积分排行榜</button>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="text-center col-9">
+      <button type="button" class="btn btn-primary rounded-pill col-10 menu-btn" id="btn-prize">查看奖品</button>
+    </div>
+  </div>
+</div>
+{% endblock %}

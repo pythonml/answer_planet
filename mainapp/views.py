@@ -13,9 +13,12 @@ import uuid
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello, Django")
+    return render(request, 'mainapp/index.html')
 
-def login_view(request):
+def login_html(request):
+    return render(request, 'mainapp/login.html')
+
+def auth_user(request):
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(request, username=username, password=password)
@@ -26,8 +29,17 @@ def login_view(request):
         msg = "cannot login user {}".format(username)
         return JsonResponse({"msg": msg, "success": False})
 
+def register_html(request):
+    return render(request, 'mainapp/register.html')
+
+def menu_html(request):
+    return render(request, 'mainapp/menu.html')
+
 def logout_view(request):
     logout(request)
+
+def questions(request):
+    return render(request, 'mainapp/questions.html')
 
 def generate_invite_code(text):
     text = text.encode("utf-8")
