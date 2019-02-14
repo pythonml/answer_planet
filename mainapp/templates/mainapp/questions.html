@@ -1,17 +1,18 @@
 {% extends 'mainapp/base.html' %}
 {% block content %}
-<div class="row justify-content-center" style="margin-top: 2rem;">
-  <div class="col-4" id="scorebar">
-   <span class="align-text-top">积分</span>
-   <span class="align-middle" id="score">0</span>
+<div class="row" style="margin-top: 2rem;">
+  <div id="scorebar">
+   <span id="score-label">本轮积分</span>
+   <span id="score-num">1000</span>
   </div>
 </div>
-<div class="row justify-content-center" style="margin-top: 2rem;">
+<div class="row justify-content-center" style="margin-top: 3rem;">
   <div class="col-10">
     <div class="card shadow">
-      <div class="card-body" style="height: 24rem;">
-        <h5 class="card-title text-center">第一题</h5>
-        <p class="card-text text-center">Python之父是哪个国家的人？</p>
+      <div class="card-body" id="question-card">
+        <div class="rounded-circle" id="clock">10</div>
+        <p class="card-text text-center">1. Python之父是哪个国家的人？</p>
+        <p class="text-center"><span class="badge badge-pill badge-primary">100分</span></p>
         <div id="options">
           <div class="border border-secondary rounded-pill opt-content">A. 中国</div>
           <div class="border border-secondary rounded-pill opt-content">B. 美国</div>
