@@ -110,3 +110,34 @@
     vertical-align: middle;
     line-height: 3rem;
 }
+
+#hl-score {
+    color: #F4540D;
+    font-size: 3rem;
+    margin-top: 2rem;
+}
+
+#total-score {
+    margin-top: 2rem;
+}
+
+#invite {
+    margin-top: 2rem;
+}
+
+#invite-tip {
+    margin-top: 0.6rem;
+}
+
+.prize-detail {
+    color: #545454;
+}
+
+#sponsor-info {
+    color: #545454;
+    margin-top: 4rem;
+}
+
+#myrank {
+    height: 3rem;
+}

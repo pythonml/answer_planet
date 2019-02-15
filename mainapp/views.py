@@ -41,6 +41,15 @@ def logout_view(request):
 def questions(request):
     return render(request, 'mainapp/questions.html')
 
+def answer_result(request):
+    return render(request, 'mainapp/answer_result.html')
+
+def prize(request):
+    return render(request, 'mainapp/prize.html')
+
+def leaderboard(request):
+    return render(request, 'mainapp/leaderboard.html')
+
 def generate_invite_code(text):
     text = text.encode("utf-8")
     m = hashlib.sha256()
@@ -143,7 +152,7 @@ def submit_answer(request):
     return JsonResponse({"msg": "", "success": True})
 
 @login_required(login_url="/mainapp/login/")
-def leaderboard(request):
+def get_top_players(request):
     NUM = 10
     leader_rows = UserTotalScore.objects.order_by('-total_score')[:10]
     result = []
