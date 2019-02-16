@@ -114,6 +114,18 @@
     height: 30rem;
 }
 
+#prepare {
+    font-size: 6rem;
+    text-align: center;
+    margin-top: 9rem;
+    width: 5rem;
+    height: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 100%;
+    display: none;
+}
+
 #clock {
     width: 2.5rem;
     height: 2.5rem;

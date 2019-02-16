@@ -13,7 +13,10 @@ import uuid
 
 # Create your views here.
 def index(request):
-    return render(request, 'mainapp/index.html')
+    if request.user.is_authenticated:
+        return redirect('questions')
+    else:
+        return redirect('login')
 
 def login_html(request):
     return render(request, 'mainapp/login.html')
