@@ -36,6 +36,16 @@
     margin-top: 4rem;
 }
 
+#username-err {
+    color: #FF0000;
+    display: none;
+}
+
+#password-err {
+    color: #FF0000;
+    display: none;
+}
+
 #btn-signin {
     margin-top: 1rem;
     height: 3rem;

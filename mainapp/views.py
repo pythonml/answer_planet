@@ -26,7 +26,7 @@ def auth_user(request):
         login(request, user)
         return JsonResponse({"msg": "", "success": True})
     else:
-        msg = "cannot login user {}".format(username)
+        msg = "用户名或密码不正确".format(username)
         return JsonResponse({"msg": msg, "success": False})
 
 def register_html(request):

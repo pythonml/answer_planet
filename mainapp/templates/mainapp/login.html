@@ -8,21 +8,33 @@
 <form id="fm-signin">
   <div class="row justify-content-center">
     <div class="form-group col-9">
-      <input type="username" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="用户名">
+      <input type="username" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="用户名" onkeydown="login.update_username(event)">
+      <div id="username-err">err</div>
     </div>
   </div>
   <div class="row justify-content-center">
     <div class="form-group col-9">
-      <input type="password" class="form-control" id="password" placeholder="密码">
+      <input type="password" class="form-control" id="password" placeholder="密码" onkeydown="login.update_password(event)">
+      <div id="password-err">err</div>
     </div>
   </div>
   <div class="row justify-content-center">
     <div class="text-center col-9">
-      <button type="button" class="btn btn-primary rounded-pill col-10" id="btn-signin">登录</button>
+      <button type="button" class="btn btn-primary rounded-pill col-10" id="btn-signin" onclick="login.submit()">登录</button>
     </div>
   </div>
 </form>
 <div class="row justify-content-center" id="lnk-reg">
   <a href="{% url 'register' %}">新用户注册</a>
 </div>
+
+<!-- modal -->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-model-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body" id="login-modal-body"></div>
+ 	<div>
+  </div>
+</div>
 {% endblock %}
+
