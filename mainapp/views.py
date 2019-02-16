@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
@@ -32,11 +32,14 @@ def auth_user(request):
 def register_html(request):
     return render(request, 'mainapp/register.html')
 
+@login_required(login_url="/login/")
 def menu_html(request):
-    return render(request, 'mainapp/menu.html')
+    username = request.user.username
+    return render(request, 'mainapp/menu.html', {"username": username})
 
 def logout_view(request):
     logout(request)
+    return redirect('login')
 
 def questions(request):
     return render(request, 'mainapp/questions.html')
@@ -66,15 +69,22 @@ def generate_invite_code(text):
 def create_user(request):
     username = request.POST["username"]
     password = request.POST["password"]
-    name = request.POST["name"]
-    phone = request.POST["phone"]
-    address = request.POST["address"]
+    name = request.POST.get("name", "")
+    phone = request.POST.get("phone", "")
+    address = request.POST.get("address", "")
     code = request.GET.get("member", "")
+
+    user_exists = User.objects.filter(username=username).count() > 0
+    if user_exists:
+        msg = "用户{}已存在".format(username)
+        return JsonResponse({"msg": msg, "success": False})
+
     found = User.objects.filter(invite_code=code).count() > 0
     invite_code = generate_invite_code(username)
+    user = None
     if code and found:
         inviter = User.objects.get(invite_code=code)
-        user = User.objects.create(username=username,
+        user = User.objects.create_user(username=username,
             password=password,
             name=name,
             phone=phone,
@@ -90,16 +100,17 @@ def create_user(request):
         inviter_score_row.total_score = inviter_score_row.total_score + invite_bonus
         inviter_score_row.save()
     else:
-        user = User.objects.create(username=username,
+        user = User.objects.create_user(username=username,
             password=password,
             name=name,
             phone=phone,
             address=address,
             invite_code=invite_code
         )
+    login(request, user)
     return JsonResponse({"msg": "", "success": True})
 
-@login_required(login_url="/mainapp/login/")
+@login_required(login_url="/login/")
 def get_random_questions(request):
     num = 5
     question_ids = Question.objects.values_list('id', flat=True)
@@ -128,7 +139,7 @@ def get_random_questions(request):
         })
     return JsonResponse({"msg": "", "success": True, "result": result})
 
-@login_required(login_url="/mainapp/login/")
+@login_required(login_url="/login/")
 def submit_answer(request):
     user = request.user
     question_id = request.POST["question_id"]
@@ -151,7 +162,7 @@ def submit_answer(request):
         user_event_row.save()
     return JsonResponse({"msg": "", "success": True})
 
-@login_required(login_url="/mainapp/login/")
+@login_required(login_url="/login/")
 def get_top_players(request):
     NUM = 10
     leader_rows = UserTotalScore.objects.order_by('-total_score')[:10]

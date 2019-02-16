@@ -60,17 +60,35 @@
     height: 3rem;
 }
 
+#pwdconfirm-err {
+    color: #FF0000;
+    display: none;
+}
+
 #lnk-sgn {
     margin-top: 2rem;
 }
 
+#welcome {
+    margin-top: 5rem;
+}
+
 #menu {
-    margin-top: 6rem;
+    margin-top: 3rem;
+}
+
+.menu-item-space {
+    margin-bottom: 2rem;
 }
 
 .menu-btn {
-    margin-bottom: 2rem;
     height: 3rem;
+    line-height: 3rem;
+    padding: 0!important;
+}
+
+#menu-split {
+    margin-top: 5rem;
 }
 
 #scorebar {

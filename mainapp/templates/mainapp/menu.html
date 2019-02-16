@@ -1,23 +1,30 @@
 {% extends 'mainapp/base.html' %}
 {% block content %}
-<div class="text-center" id="brand">
-  <img src="/static/img/logo.jpg" id="logo" alt width="72" height="72">
-  <p class="lead" id="brandname">Python与数据分析</p>
+<div id="welcome">
+  <div class="row justify-content-center">
+    <p class="lead">你好, {{ username }}</p>
+  </div>
 </div>
 <div id="menu">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center menu-item-space">
     <div class="text-center col-9">
-      <button type="button" class="btn btn-primary rounded-pill col-10 menu-btn" id="btn-answer">开始答题</button>
+      <a href="{% url 'questions' %}" role="button" class="btn btn-primary rounded-pill col-10 menu-btn" id="btn-answer">开始答题</a>
+    </div>
+  </div>
+  <div class="row justify-content-center menu-item-space">
+    <div class="text-center col-9">
+      <a href="{% url 'leaderboard' %}" role="button" class="btn btn-primary rounded-pill col-10 menu-btn" id="btn-leader">积分排行榜</a>
     </div>
   </div>
   <div class="row justify-content-center">
     <div class="text-center col-9">
-      <button type="button" class="btn btn-primary rounded-pill col-10 menu-btn" id="btn-leader">积分排行榜</button>
+      <a href="{% url 'prize' %}" role="button" class="btn btn-primary rounded-pill col-10 menu-btn" id="btn-prize">查看奖品</a>
     </div>
   </div>
+  <hr class="col-9" id="menu-split" />
   <div class="row justify-content-center">
     <div class="text-center col-9">
-      <button type="button" class="btn btn-primary rounded-pill col-10 menu-btn" id="btn-prize">查看奖品</button>
+      <a href="{% url 'logout' %}" role="button" class="btn btn-danger rounded-pill col-10 menu-btn" id="btn-logout">退出登录</a>
     </div>
   </div>
 </div>

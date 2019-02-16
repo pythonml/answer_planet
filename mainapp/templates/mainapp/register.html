@@ -5,29 +5,41 @@
   <p class="lead" id="brandname">Python与数据分析</p>
 </div>
 <h5 class="text-center text-body" id="title">新用户注册</h5>
-<form id="fm-signin">
+<form id="fm-signin">{% csrf_token %}
   <div class="row justify-content-center">
     <div class="form-group col-9">
-      <input type="username" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="用户名">
+      <input type="username" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="用户名" onchange="register.update_username(event)">
+      <div id="username-err"></div>
     </div>
   </div>
   <div class="row justify-content-center">
     <div class="form-group col-9">
-      <input type="password" class="form-control" id="password" placeholder="输入密码">
+      <input type="password" class="form-control" id="password" placeholder="输入密码" onchange="register.update_password(event)">
+      <div id="password-err"></div>
     </div>
   </div>
   <div class="row justify-content-center">
     <div class="form-group col-9">
-      <input type="pwdconfirm" class="form-control" id="pwdconfirm" placeholder="再次输入密码">
+      <input type="password" class="form-control" id="pwdconfirm" placeholder="再次输入密码" onchange="register.update_pwdconfirm(event)">
+      <div id="pwdconfirm-err"></div>
     </div>
   </div>
   <div class="row justify-content-center">
     <div class="text-center col-9">
-      <button type="button" class="btn btn-primary rounded-pill col-10" id="btn-reg">注册</button>
+      <button type="button" class="btn btn-primary rounded-pill col-10" id="btn-reg" onclick="register.submit()">注册</button>
     </div>
   </div>
 </form>
 <div class="row justify-content-center" id="lnk-sgn">
   <a href="{% url 'login' %}">登录</a>
+</div>
+
+<!-- modal -->
+<div class="modal fade" id="reg-modal" tabindex="-1" role="dialog" aria-labelledby="reg-model-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center" id="reg-modal-body"></div>
+ 	<div>
+  </div>
 </div>
 {% endblock %}
