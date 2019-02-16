@@ -1,11 +1,62 @@
 {% extends 'mainapp/base.html' %}
 {% block content %}
-<div class="row" style="margin-top: 2rem;">
-  <div id="myrank">
-  my
-  </div>
-  <hr/>
-  <div id="toprank">
+<div class="row justify-content-center" style="margin-top: 2rem;">
+  <div class="col-10">
+    <div class="row border-top border-bottom">
+      <div class="col-7 my-1">
+        <div><span>shenzhongqiang</span><span> (我)</span></div>
+        <div id="myrank"><span>排名: </span><span>30</span></div>
+      </div>
+      <div class="col-5 my-1 text-primary" id="myscore" style="font-size: 1.2rem;">
+        <div class="my-2 border-left text-center">
+          <span>总分: </span>
+          <span>280</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5" id="top-rank">
+      <p class="lead text-center">总分排行榜Top 10</p>
+      <div class="row border-bottom top-header">
+        <div class="col-2"></div><div class="col-6">用户</div><div class="col-4">总分</div>
+      </div>
+      <div class="row border-bottom top-item py-1">
+        <div class="col-2">1</div><div class="col-6">wang</div><div class="col-4">100000</div>
+      </div>
+      <div class="row border-bottom top-item py-1">
+        <div class="col-2">2</div><div class="col-6">wang</div><div class="col-4">1000</div>
+      </div>
+      <div class="row border-bottom top-item py-2">
+        <div class="col-2">3</div><div class="col-6">wang</div><div class="col-4">1000</div>
+      </div>
+      <div class="row border-bottom top-item py-2">
+        <div class="col-2">4</div><div class="col-6">wang</div><div class="col-4">1000</div>
+      </div>
+      <div class="row border-bottom top-item py-2">
+        <div class="col-2">5</div><div class="col-6">wang</div><div class="col-4">1000</div>
+      </div>
+      <div class="row border-bottom top-item py-2">
+        <div class="col-2">6</div><div class="col-6">wang</div><div class="col-4">1000</div>
+      </div>
+      <div class="row border-bottom top-item py-2">
+        <div class="col-2">7</div><div class="col-6">wang</div><div class="col-4">1000</div>
+      </div>
+      <div class="row border-bottom top-item py-2">
+        <div class="col-2">8</div><div class="col-6">wang</div><div class="col-4">1000</div>
+      </div>
+      <div class="row border-bottom top-item py-2">
+        <div class="col-2">9</div><div class="col-6">wang</div><div class="col-4">1000</div>
+      </div>
+      <div class="row border-bottom top-item py-2">
+        <div class="col-2">10</div><div class="col-6">wang</div><div class="col-4">1000</div>
+      </div>
+    </div>
+
+
+    <div class="text-center mt-4">
+      <a href="{% url 'questions' %}" role="button" class="btn btn-outline-primary rounded-pill">继续答题</a>
+      <a href="" role="button" class="btn btn-outline-primary rounded-pill">邀请好友</a>
+    </div>
   </div>
 </div>
 {% endblock %}
