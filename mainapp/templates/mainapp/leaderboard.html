@@ -1,16 +1,19 @@
 {% extends 'mainapp/base.html' %}
 {% block content %}
-<div class="row justify-content-center" style="margin-top: 2rem;">
+<div class="row justify-content-center">
   <div class="col-10">
-    <div class="row border-top border-bottom">
-      <div class="col-7 my-1">
-        <div><span>shenzhongqiang</span><span> (我)</span></div>
-        <div id="myrank"><span>排名: </span><span>30</span></div>
-      </div>
-      <div class="col-5 my-1 text-primary" id="myscore" style="font-size: 1.2rem;">
-        <div class="my-2 border-left text-center">
-          <span>总分: </span>
-          <span>280</span>
+    <div class="mt-4" id="my-rank">
+      <p class="lead text-center">我的排名</p>
+      <div class="row border-top border-bottom">
+        <div class="col-7 my-1">
+          <div><span>shenzhongqiang</span></div>
+          <div id="myrank"><span>排名: </span><span>30</span></div>
+        </div>
+        <div class="col-5 my-1 text-primary" id="myscore" style="font-size: 1.2rem;">
+          <div class="my-2 border-left text-center">
+            <span>总分: </span>
+            <span>280</span>
+          </div>
         </div>
       </div>
     </div>
@@ -53,7 +56,7 @@
     </div>
 
 
-    <div class="text-center mt-4">
+    <div class="text-center my-4">
       <a href="{% url 'questions' %}" role="button" class="btn btn-outline-primary rounded-pill">继续答题</a>
       <a href="" role="button" class="btn btn-outline-primary rounded-pill">邀请好友</a>
     </div>

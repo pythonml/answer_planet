@@ -1,6 +1,6 @@
 {% extends 'mainapp/base.html' %}
 {% block content %}
-<div class="row justify-content-center" style="margin-top: 5rem;">
+<div class="row justify-content-center mt-5">
   <div class="text-center col-9">
     <div id="result">
       <p class="lead">本局共获得积分</p>
@@ -11,8 +11,8 @@
       <a href="" role="button" class="btn btn-primary rounded-pill btn-lg" id="btn-invite">邀请好友</a>
       <p id="invite-tip"><small>每邀请一位好友可额外获得100积分</small></p>
     </div>
-    <hr class="col-9" style="margin-top:2rem;"/>
-    <div style="margin-top:2rem;">
+    <hr class="col-9 mt-3"/>
+    <div style="mt-3">
       <a href="{% url 'questions' %}" role="button" class="btn btn-outline-primary rounded-pill">继续答题</a>
       <a href="" role="button" class="btn btn-outline-primary rounded-pill">查看排行榜</a>
     </div>
