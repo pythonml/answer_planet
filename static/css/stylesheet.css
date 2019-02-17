@@ -126,7 +126,11 @@
     display: none;
 }
 
-#clock {
+#qstn-opts {
+    display: none;
+}
+
+#qstn-clock {
     width: 2.5rem;
     height: 2.5rem;
     border: 2px solid #17a2b8!important;
@@ -151,14 +155,22 @@
     line-height: 3rem;
 }
 
-#hl-score {
+#aswr-score-num {
     color: #F4540D;
     font-size: 3rem;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
+}
+
+#aswr-rslt {
+    display: none;
+}
+
+#round-result {
+    margin-top: 6rem;
 }
 
 #total-score {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 
 #invite {

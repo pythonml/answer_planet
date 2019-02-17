@@ -45,5 +45,5 @@ class UserEvent(models.Model):
     user_answer = models.ForeignKey(UserAnswer, null=True, on_delete=models.CASCADE)
 
 class UserTotalScore(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, unique=True)
     total_score = models.IntegerField(default=0)

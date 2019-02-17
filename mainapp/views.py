@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
-from .models import UserTotalScore, User, UserEvent, UserTotalScore
+from .models import UserTotalScore, User, UserEvent, UserTotalScore, Question
 import numpy as np
 import hashlib
 import uuid
@@ -44,6 +44,7 @@ def logout_view(request):
     logout(request)
     return redirect('login')
 
+@login_required(login_url="/login/")
 def questions(request):
     return render(request, 'mainapp/questions.html')
 
@@ -99,7 +100,7 @@ def create_user(request):
         inviter_row = User.objects.get(invite_code=code)
         inviter_event_row = UserEvent.objects.create(user=inviter_row, event_type="invite",
             score=invite_bonus)
-        inviter_score_row = UserTotalScore.objects.get_or_create(user=inviter_row)
+        (inviter_score_row, _) = UserTotalScore.objects.get_or_create(user=inviter_row)
         inviter_score_row.total_score = inviter_score_row.total_score + invite_bonus
         inviter_score_row.save()
     else:
@@ -119,13 +120,13 @@ def get_random_questions(request):
     question_ids = Question.objects.values_list('id', flat=True)
     sample_ids = np.random.choice(question_ids, num, replace=False)
     question_rows = Question.objects.filter(id__in=sample_ids)
-    result = []
+    questions = []
     for question_row in question_rows:
         question_id = question_row.id
         question_text = question_row.question_text
         count_down = question_row.count_down
         score = question_row.score
-        option_rows = question_row.options.all()
+        option_rows = question_row.options.order_by('label')
         options = []
         for option_row in option_rows:
             options.append({
@@ -133,13 +134,16 @@ def get_random_questions(request):
                 "option_text": option_row.option_text
             })
 
-        result.append({
+        questions.append({
             "question_id": question_id,
             "question_text": question_text,
             "count_down": count_down,
             "score": score,
             "options": options
         })
+    (user_score_row, _) = UserTotalScore.objects.get_or_create(user=request.user)
+    user_score = user_score_row.total_score
+    result = {"questions": questions, "user_score": user_score}
     return JsonResponse({"msg": "", "success": True, "result": result})
 
 @login_required(login_url="/login/")
@@ -156,7 +160,7 @@ def submit_answer(request):
         user_event_row = UserEvent(user=user, event_type="answer",
             score=question_row.score, user_answer=user_answer_row)
         user_event_row.save()
-        user_score_row = UserScore.objects.get_or_create(user=user)
+        (user_score_row, _) = UserScore.objects.get_or_create(user=user)
         user_score_row.total_score = user_score_row.total_score + question_row.score
         user_score_row.save()
     else:
