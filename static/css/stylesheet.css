@@ -161,7 +161,7 @@
 #aswr-score-num {
     color: #F4540D;
     font-size: 3rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
 }
 
 #aswr-rslt {
@@ -173,15 +173,16 @@
 }
 
 #total-score {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
 }
 
 #invite {
     margin-top: 2rem;
+    border: solid 1px #dddddd;
 }
 
 #invite-tip {
-    margin-top: 0.6rem;
+    margin-top: 1.5rem;
 }
 
 .prize-detail {

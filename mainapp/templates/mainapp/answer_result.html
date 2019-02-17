@@ -2,17 +2,20 @@
 {% block content %}
 <div class="row justify-content-center mt-5">
   <div class="text-center col-9">
-    <div id="result">
-      <p class="lead">本局共获得积分</p>
-      <p id="hl-score">500</p>
-      <p id="total-score">当前总积分 2000</p>
+    <div id="result-result">
+      <h2>本局结束</h2>
+      <div class="mt-4">本局共获得积分</div>
+      <div id="aswr-score-num">500</div>
+      <div id="total-score">当前总积分 <span id="total-score-num">2000</span></div>
     </div>
-    <div id="invite">
+    <div class="card text-center" id="invite">
+      <div class="card-body">
+      <div class="mb-4">邀请好友也可获得积分</div>
       <a href="" role="button" class="btn btn-primary rounded-pill btn-lg" id="btn-invite">邀请好友</a>
-      <p id="invite-tip"><small>每邀请一位好友可额外获得100积分</small></p>
+      <div id="invite-tip">每邀请1人可获得<strong>100</strong>积分</div>
     </div>
-    <hr class="col-9 mt-3"/>
-    <div style="mt-3">
+    </div>
+    <div class="mt-4">
       <a href="{% url 'questions' %}" role="button" class="btn btn-outline-primary rounded-pill">继续答题</a>
       <a href="" role="button" class="btn btn-outline-primary rounded-pill">查看排行榜</a>
     </div>

@@ -39,16 +39,18 @@
   <div class="text-center col-9">
     <div id="round-result">
       <h2>本局结束</h2>
-      <p class="mt-5">本局共获得积分</p>
+      <div class="mt-4">本局共获得积分</div>
       <p id="aswr-score-num"></p>
-      <p id="total-score">当前总积分 <span id="total-score-num">2000</span></p>
+      <p id="total-score">当前总积分 <span id="total-score-num"></span></p>
     </div>
-    <div id="invite">
-      <a href="" role="button" class="btn btn-primary rounded-pill btn-lg" id="btn-invite">邀请好友</a>
-      <p id="invite-tip"><small>每邀请一位好友可额外获得100积分</small></p>
+    <div class="card text-center" id="invite">
+      <div class="card-body">
+        <div class="mb-4">邀请好友也可获得积分</div>
+        <a href="" role="button" class="btn btn-primary rounded-pill btn-lg" id="btn-invite">邀请好友</a>
+        <div id="invite-tip">每邀请1人可获得<strong>100</strong>积分</div>
+      </div>
     </div>
-    <hr class="col-9 mt-3"/>
-    <div style="mt-3">
+    <div class="mt-4">
       <a href="{% url 'questions' %}" role="button" class="btn btn-outline-primary rounded-pill">继续答题</a>
       <a href="{% url 'leaderboard' %}" role="button" class="btn btn-outline-primary rounded-pill">查看排行榜</a>
     </div>
