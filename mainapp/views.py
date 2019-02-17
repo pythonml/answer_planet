@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
-from .models import UserTotalScore, User, UserEvent, UserTotalScore, Question
+from .models import UserTotalScore, User, UserEvent, UserAnswer, UserTotalScore, Question, Option
 import numpy as np
 import hashlib
 import uuid
@@ -54,8 +54,29 @@ def answer_result(request):
 def prize(request):
     return render(request, 'mainapp/prize.html')
 
+@login_required(login_url="/login/")
 def leaderboard(request):
-    return render(request, 'mainapp/leaderboard.html')
+    me = request.user
+    (my_score_row, _) = UserTotalScore.objects.get_or_create(user=me)
+    my_score = my_score_row.total_score
+    my_username = me.username
+
+    NUM = 10
+    leader_rows = UserTotalScore.objects.order_by('-total_score')[:10]
+    leaders = []
+    for user_score in leader_rows:
+        username = user_score.user.username
+        leaders.append({"username": username,
+            "score": user_score.total_score
+        })
+
+    my_rank = UserTotalScore.objects.filter(total_score__gte=my_score).count()
+    return render(request, 'mainapp/leaderboard.html', {
+        "leaders": leaders,
+        "my_score": my_score,
+        "my_username": my_username,
+        "my_rank": my_rank
+    })
 
 def generate_invite_code(text):
     text = text.encode("utf-8")
@@ -130,6 +151,7 @@ def get_random_questions(request):
         options = []
         for option_row in option_rows:
             options.append({
+                "option_id": option_row.id,
                 "label": option_row.label,
                 "option_text": option_row.option_text
             })
@@ -149,34 +171,23 @@ def get_random_questions(request):
 @login_required(login_url="/login/")
 def submit_answer(request):
     user = request.user
-    question_id = request.POST["question_id"]
-    answer_label = request.POST["answer_label"]
-    question_row = Question.objects.get(pk=question_id)
-    correct_label = question_row.options.get(is_correct=True).label
-    option_row = question_row.options.get(label=answer_label)
-    user_answer_row = UserAnswer(user=user, answer=option_row)
+    option_id = int(request.POST["option_id"])
+    option_row = Option.objects.get(pk=option_id)
+    question_row = option_row.question
+    user_answer_row = UserAnswer(user=user, question=question_row, answer=option_row)
     user_answer_row.save()
-    if correct_label == answer_label:
+
+    if option_row.is_correct:
         user_event_row = UserEvent(user=user, event_type="answer",
             score=question_row.score, user_answer=user_answer_row)
         user_event_row.save()
-        (user_score_row, _) = UserScore.objects.get_or_create(user=user)
-        user_score_row.total_score = user_score_row.total_score + question_row.score
+        (user_score_row, _) = UserTotalScore.objects.get_or_create(user=user)
+        user_score_row.total_score += question_row.score
         user_score_row.save()
     else:
         user_event_row = UserEvent(user=user, event_type="answer",
             score=0, user_answer=user_answer_row)
         user_event_row.save()
-    return JsonResponse({"msg": "", "success": True})
-
-@login_required(login_url="/login/")
-def get_top_players(request):
-    NUM = 10
-    leader_rows = UserTotalScore.objects.order_by('-total_score')[:10]
-    result = []
-    for row in leader_rows:
-        username = user.username
-        result.append({"username": username,
-            "score": user.total_score
-        })
+    correct_row = question_row.options.filter(is_correct=True)[0]
+    result = {"is_correct": option_row.is_correct, "correct_option": correct_row.id}
     return JsonResponse({"msg": "", "success": True, "result": result})
