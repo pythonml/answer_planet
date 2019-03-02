@@ -14,7 +14,7 @@ import uuid
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
-        return redirect('questions')
+        return redirect('menu')
     else:
         return redirect('login')
 
