@@ -6,10 +6,14 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
+from django.urls import reverse
+from django.conf import settings
 from .models import UserTotalScore, User, UserEvent, UserAnswer, UserTotalScore, Question, Option
+import os
 import numpy as np
 import hashlib
 import uuid
+import qrcode
 
 # Create your views here.
 def index(request):
@@ -33,6 +37,8 @@ def auth_user(request):
         return JsonResponse({"msg": msg, "success": False})
 
 def register_html(request):
+    code = request.GET.get("refcode", "")
+    request.session["referrer_code"] = code
     return render(request, 'mainapp/register.html')
 
 @login_required(login_url="/login/")
@@ -97,18 +103,18 @@ def create_user(request):
     name = request.POST.get("name", "")
     phone = request.POST.get("phone", "")
     address = request.POST.get("address", "")
-    code = request.GET.get("member", "")
+    referrer_code = request.session.get("referrer_code", "")
 
     user_exists = User.objects.filter(username=username).count() > 0
     if user_exists:
         msg = "用户{}已存在".format(username)
         return JsonResponse({"msg": msg, "success": False})
 
-    found = User.objects.filter(invite_code=code).count() > 0
+    found = User.objects.filter(invite_code=referrer_code).count() > 0
     invite_code = generate_invite_code(username)
     user = None
-    if code and found:
-        inviter = User.objects.get(invite_code=code)
+    if referrer_code and found:
+        inviter = User.objects.get(invite_code=referrer_code)
         user = User.objects.create_user(username=username,
             password=password,
             name=name,
@@ -118,7 +124,7 @@ def create_user(request):
             invite_code=invite_code
         )
         invite_bonus = 100
-        inviter_row = User.objects.get(invite_code=code)
+        inviter_row = User.objects.get(invite_code=referrer_code)
         inviter_event_row = UserEvent.objects.create(user=inviter_row, event_type="invite",
             score=invite_bonus)
         (inviter_score_row, _) = UserTotalScore.objects.get_or_create(user=inviter_row)
@@ -191,3 +197,17 @@ def submit_answer(request):
     correct_row = question_row.options.filter(is_correct=True)[0]
     result = {"is_correct": option_row.is_correct, "correct_option": correct_row.id}
     return JsonResponse({"msg": "", "success": True, "result": result})
+
+@login_required(login_url="/login/")
+def invite_html(request):
+    user = request.user
+    invite_code = user.invite_code
+    url = "{}?refcode={}".format(
+        request.build_absolute_uri(reverse("register")),
+        invite_code)
+    img = qrcode.make(url)
+    img_filename = "{}.jpg".format(invite_code)
+    img_path = os.path.join(settings.BASE_DIR, "static", "img", "qrcode", img_filename)
+    img_relurl = "/static/img/qrcode/{}".format(img_filename)
+    img.save(img_path)
+    return render(request, 'mainapp/invite.html', {"username": user.username, "invite_qrcode": img_relurl})

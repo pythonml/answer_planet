@@ -15,4 +15,5 @@ urlpatterns = [
     path('leaderboard/', views.leaderboard, name='leaderboard'),
     path('get_random_questions/', views.get_random_questions, name='get_random_questions'),
     path('answer/submit/', views.submit_answer, name='submit_answer'),
+    path('invite/', views.invite_html, name='invite'),
 ]
