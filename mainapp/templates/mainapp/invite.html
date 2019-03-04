@@ -1,31 +1,29 @@
 {% extends 'mainapp/base.html' %}
 {% block content %}
-<div class="row justify-content-center" style="margin-top: 6rem;">
+<div class="row justify-content-center" style="margin-top: 4rem;">
   <div class="text-center col-10">
     <img src="/static/img/cardbg/skyler-smith-113650-unsplash.jpg" class="rounded-circle w-50" />
   </div>
   <div class="text-center col-10" style="margin-top: 5rem;">
     <p>我在参加 <img src="/static/img/logo.jpg" class="rounded-circle" style="width: 1rem;" /> Python与数据分析 <strong>有奖竞答</strong></p>
-    <h4><p>答题学技术，还能赢取经典技术书籍</p></h4>
+    <p class="font-weight-bold" style="font-size: 1.5rem;">答题学技术，还能赢取经典技术书籍</p>
     <p>赶快和我一起吧！</p>
   </div>
 
   <div class="text-center offset-1 col-10 mt-4 clearfix">
-    <div class="float-right font-weight-light text-muted"><small>by.{{ username }}</small></div>
+    <div class="float-right font-weight-light font-italic text-white"><small>by.{{ username }}</small></div>
   </div>
 </div>
 
 <hr/>
-<div class="row justify-content-center">
+<div class="row justify-content-center mb-4">
   <div class="col-12">
     <div class="float-left col-6">
       <div style="color: #FF5C0D; margin-top: 0.4rem;">有奖竞答</div>
-      <div class="text-muted" style="font-size: 0.6rem; margin-top:0.8rem">长按扫码<br/>
+      <div class="text-muted" style="font-size: 0.8rem; margin-top:0.8rem">长按扫码<br/>
       开启你的答题之旅</div>
     </div>
-    <div class="float-right col-4"><img src="{{ invite_qrcode }}" class="w-100" /></div>
+    <!--<div class="float-right col-4"><img src="{{ invite_qrcode }}" class="w-100" /></div> -->
   </div>
 </div>
 {% endblock %}
-
-

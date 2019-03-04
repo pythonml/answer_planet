@@ -36,6 +36,17 @@ def auth_user(request):
         msg = "用户名或密码不正确".format(username)
         return JsonResponse({"msg": msg, "success": False})
 
+def generate_invite_card(username, invite_code):
+    url = "{}?refcode={}".format(
+        request.build_absolute_uri(reverse("register")),
+        invite_code)
+    img = qrcode.make(url)
+    img_filename = "{}.jpg".format(invite_code)
+    img_path = os.path.join(settings.BASE_DIR, "static", "img", "qrcode", img_filename)
+    img_relurl = "/static/img/qrcode/{}".format(img_filename)
+    img.save(img_path)
+    return render(request, 'mainapp/invite.html', {"username": user.username, "invite_qrcode": img_relurl})
+
 def register_html(request):
     code = request.GET.get("refcode", "")
     request.session["referrer_code"] = code
@@ -211,3 +222,6 @@ def invite_html(request):
     img_relurl = "/static/img/qrcode/{}".format(img_filename)
     img.save(img_path)
     return render(request, 'mainapp/invite.html', {"username": user.username, "invite_qrcode": img_relurl})
+
+def invite_pic(request):
+    return render(request, 'mainapp/invite_pic.html')
