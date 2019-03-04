@@ -33,9 +33,12 @@
 
     <div class="text-center my-4">
       <a href="{% url 'menu' %}" role="button" class="btn btn-outline-primary rounded-pill">返回菜单</a>
-      <a href="/invite" role="button" class="btn btn-outline-primary rounded-pill">邀请好友</a>
+      <button type="button" class="btn btn-outline-primary rounded-pill" data-toggle="modal" data-target="#inviteCardModal">邀请好友</button>
     </div>
   </div>
 </div>
+
+{% include "mainapp/invite_pic.html" %}
+
 {% endblock %}
 

@@ -1,4 +1,16 @@
-{% extends 'mainapp/base.html' %}
-{% block content %}
-<img src="/static/img/invite_card/shenzhongqiang_invite.png">
-{% endblock %}
+<div class="modal fade" id="inviteCardModal" tabindex="-1" role="dialog" aria-labelledby="inviteCardLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="invateCardTitle"><strong>长按页面发送邀请给好友</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+  		<!--<p class="text-primary">保存下面的图片，发送给好友或分享到朋友圈</p> -->
+  		<img src="/static/img/invite_card/{{ user.username }}.png" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</div>

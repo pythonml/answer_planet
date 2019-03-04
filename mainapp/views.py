@@ -9,6 +9,7 @@ from django.utils import timezone
 from django.urls import reverse
 from django.conf import settings
 from .models import UserTotalScore, User, UserEvent, UserAnswer, UserTotalScore, Question, Option
+from PIL import ImageFont, Image, ImageDraw
 import os
 import numpy as np
 import hashlib
@@ -223,5 +224,23 @@ def invite_html(request):
     img.save(img_path)
     return render(request, 'mainapp/invite.html', {"username": user.username, "invite_qrcode": img_relurl})
 
+@login_required(login_url="/login/")
 def invite_pic(request):
+    user = request.user
+    username = user.username
+    invite_code = user.invite_code
+    url = "{}?refcode={}".format(
+        request.build_absolute_uri(reverse("register")),
+        invite_code)
+    qr_img = qrcode.make(url)
+    qr_img = qr_img.resize((175, 175), Image.ANTIALIAS)
+    img = Image.open("static/img/invite_card/base.png")
+    img.paste(qr_img, (520, 1120))
+    draw = ImageDraw.Draw(img)
+    font = ImageFont.truetype("static/font/SourceHanSansSC-Light.otf", 28)
+    by_user = "by.{}".format(username)
+    text_w, text_h = draw.textsize(by_user, font=font)
+    draw.text((695-text_w, 1000), by_user, (108, 117, 125), font=font)
+    filepath = "static/img/invite_card/{}.png".format(username)
+    img.save(filepath)
     return render(request, 'mainapp/invite_pic.html')

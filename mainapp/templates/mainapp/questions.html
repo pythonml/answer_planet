@@ -46,7 +46,7 @@
     <div class="card text-center" id="invite">
       <div class="card-body">
         <div class="mb-4">邀请好友也可获得积分</div>
-        <a href="" role="button" class="btn btn-primary rounded-pill btn-lg" id="btn-invite">邀请好友</a>
+        <button type="button" class="btn btn-primary rounded-pill btn-lg" data-toggle="modal" data-target="#inviteCardModal" id="btn-invite">邀请好友</button>
         <div id="invite-tip">每邀请1人可获得<strong>100</strong>积分</div>
       </div>
     </div>
@@ -64,5 +64,7 @@
       </div>
     </div>
   </div>
+
+  {% include "mainapp/invite_pic.html" %}
 </div>
 {% endblock %}
