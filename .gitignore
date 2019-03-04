@@ -43,5 +43,5 @@ nosetests.xml
 .ropeproject
 
 dataviz/data/
-dlib/shape_predictor_68_face_landmarks.dat
-images/
+static/img/invite_card/
+

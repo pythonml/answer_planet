@@ -29,6 +29,11 @@ var register = {
             $("#username-err").show();
             err = true;
         }
+        else if(this.username.length > 15) {
+            $("#username-err").html("用户名长度不能超过15个字符");
+            $("#username-err").show();
+            err = true;
+        }
         if(this.password.length == 0) {
             $("#password-err").html("密码不能为空");
             $("#password-err").show();
