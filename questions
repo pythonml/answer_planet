@@ -1,0 +1,175 @@
+- count_down: 10
+  difficulty: ''
+  id: 1
+  in_use: true
+  options:
+  - is_correct: false
+    label: A
+    option_text: 美国
+  - is_correct: true
+    label: B
+    option_text: 荷兰
+  question_text: Python之父是哪国人？
+  score: 100
+- count_down: 10
+  difficulty: ''
+  id: 2
+  in_use: true
+  options:
+  - is_correct: true
+    label: A
+    option_text: 解释型
+  - is_correct: false
+    label: B
+    option_text: 编译型
+  question_text: Python是什么类型的语言？
+  score: 100
+- count_down: 10
+  difficulty: ''
+  id: 4
+  in_use: true
+  options:
+  - is_correct: false
+    label: A
+    option_text: '1989'
+  - is_correct: false
+    label: B
+    option_text: '1990'
+  - is_correct: true
+    label: C
+    option_text: '1991'
+  - is_correct: false
+    label: D
+    option_text: '1992'
+  question_text: Python诞生于几几年？
+  score: 100
+- count_down: 10
+  difficulty: ''
+  id: 5
+  in_use: true
+  options:
+  - is_correct: false
+    label: A
+    option_text: Flask
+  - is_correct: false
+    label: B
+    option_text: Django
+  - is_correct: true
+    label: C
+    option_text: Hibernate
+  question_text: 以下哪个不是Python的框架
+  score: 100
+- count_down: 10
+  difficulty: ''
+  id: 6
+  in_use: true
+  options:
+  - is_correct: false
+    label: A
+    option_text: 青蛙
+  - is_correct: false
+    label: B
+    option_text: 蜗牛
+  - is_correct: false
+    label: C
+    option_text: 犀牛
+  - is_correct: true
+    label: D
+    option_text: 蟒蛇
+  question_text: Python的字面意思是哪种动物？
+  score: 100
+- count_down: 10
+  difficulty: ''
+  id: 11
+  in_use: true
+  options:
+  - is_correct: true
+    label: A
+    option_text: 做科学计算的库
+  - is_correct: false
+    label: B
+    option_text: 发送HTTP请求的库
+  - is_correct: false
+    label: C
+    option_text: 解析命令行参数的库
+  - is_correct: false
+    label: D
+    option_text: 处理正则表达式的库
+  question_text: numpy是一个什么库
+  score: 100
+- count_down: 10
+  difficulty: ''
+  id: 13
+  in_use: true
+  options:
+  - is_correct: false
+    label: A
+    option_text: 詹姆斯·高斯林
+  - is_correct: false
+    label: B
+    option_text: 本贾尼·斯特劳斯特卢普
+  - is_correct: true
+    label: C
+    option_text: 吉多·范罗苏姆
+  - is_correct: false
+    label: D
+    option_text: 布鲁诺·马尔斯
+  question_text: Python之父是谁？
+  score: 100
+- count_down: 10
+  difficulty: ''
+  id: 14
+  in_use: true
+  options:
+  - is_correct: false
+    label: A
+    option_text: requests
+  - is_correct: false
+    label: B
+    option_text: lxml
+  - is_correct: false
+    label: C
+    option_text: scipy
+  - is_correct: true
+    label: D
+    option_text: matplotlib
+  question_text: 以下哪个库可以实现绘图的功能
+  score: 100
+- count_down: 10
+  difficulty: ''
+  id: 15
+  in_use: true
+  options:
+  - is_correct: false
+    label: A
+    option_text: 爬虫库
+  - is_correct: false
+    label: B
+    option_text: 图像处理的库
+  - is_correct: false
+    label: C
+    option_text: GUI库
+  - is_correct: true
+    label: D
+    option_text: 机器学习库
+  question_text: sklearn是一个什么库
+  score: 100
+- count_down: 10
+  difficulty: ''
+  id: 16
+  in_use: true
+  options:
+  - is_correct: true
+    label: A
+    option_text: pip install
+  - is_correct: false
+    label: B
+    option_text: brew install
+  - is_correct: false
+    label: C
+    option_text: apt-get install
+  - is_correct: false
+    label: D
+    option_text: yum install
+  question_text: 以下哪一个是Python中安装库的方式
+  score: 100

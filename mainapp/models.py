@@ -13,12 +13,19 @@ class Question(models.Model):
     difficulty = models.CharField(max_length=10, choices=DIFFICULTY_CHOICES, blank=True)
     count_down = models.IntegerField(default=10)
     score = models.IntegerField()
+    in_use = models.BooleanField(default=True)
+
+    def __str__(self):
+        return '<Question [question_text="{}", difficulty="{}", count_down="{}", score="{}"]>'.format(self.question_text, self.difficulty, self.count_down, self.score)
 
 class Option(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="options")
     label = models.CharField(max_length=1)
     option_text = models.TextField()
     is_correct = models.BooleanField()
+
+    def __str__(self):
+        return '<Option [label="{}", option_text="{}", is_correct="{}"]>'.format(self.label, self.option_text, self.is_correct)
 
 class User(AbstractUser):
     name = models.CharField(max_length=50, blank=True)
