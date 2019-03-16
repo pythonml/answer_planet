@@ -52,7 +52,7 @@ var questions = {
         var ret = setInterval(function() {
             if(num == 0) {
                 clearInterval(ret);
-                $this.show_question(4);
+                $this.show_question();
                 return;
             }
             $("#prepare").html(num);

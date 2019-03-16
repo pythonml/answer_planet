@@ -156,7 +156,7 @@ def create_user(request):
 @login_required(login_url="/login/")
 def get_random_questions(request):
     num = 5
-    question_ids = Question.objects.fileter(in_use=True).values_list('id', flat=True)
+    question_ids = Question.objects.filter(in_use=True).values_list('id', flat=True)
     sample_ids = np.random.choice(question_ids, num, replace=False)
     question_rows = Question.objects.filter(id__in=sample_ids)
     questions = []
