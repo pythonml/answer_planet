@@ -9,6 +9,12 @@
   - is_correct: true
     label: B
     option_text: 荷兰
+  - is_correct: false
+    label: C
+    option_text: 英国
+  - is_correct: false
+    label: D
+    option_text: 意大利
   question_text: Python之父是哪国人？
   score: 100
 - count_down: 10
@@ -172,4 +178,173 @@
     label: D
     option_text: yum install
   question_text: 以下哪一个是Python中安装库的方式
+  score: 100
+- count_down: 10
+  difficulty: ''
+  id: 17
+  in_use: true
+  options:
+  - is_correct: false
+    label: A
+    option_text: 传入字典的值作为关键词参数传给函数
+  - is_correct: true
+    label: B
+    option_text: 传入元组或列表的值作为参数传给函数
+  question_text: '*args是什么意思'
+  score: 100
+- count_down: 10
+  difficulty: ''
+  id: 18
+  in_use: true
+  options:
+  - is_correct: true
+    label: A
+    option_text: 传入字典的值作为关键词参数传给函数
+  - is_correct: false
+    label: B
+    option_text: 传入元组或列表的值作为参数传给函数
+  question_text: '**kwargs是什么意思'
+  score: 100
+- count_down: 10
+  difficulty: ''
+  id: 19
+  in_use: true
+  options:
+  - is_correct: false
+    label: A
+    option_text: dataframe是一维数据结构，panel是二维数据结构
+  - is_correct: true
+    label: B
+    option_text: dataframe是二维数据结构，panel是三维数据结构
+  - is_correct: false
+    label: C
+    option_text: dataframe是二维数据结构，panel是一维数据结构
+  - is_correct: false
+    label: D
+    option_text: dataframe是三维数据结构，panel是二维数据结构
+  question_text: pandas里面dataframe和panel有何区别
+  score: 100
+- count_down: 10
+  difficulty: ''
+  id: 20
+  in_use: true
+  options:
+  - is_correct: false
+    label: A
+    option_text: 发送HTTP请求
+  - is_correct: false
+    label: B
+    option_text: 读写文件
+  - is_correct: false
+    label: C
+    option_text: 处理时间
+  - is_correct: true
+    label: D
+    option_text: 解析HTML和XML
+  question_text: lxml库的作用是什么
+  score: 100
+- count_down: 10
+  difficulty: ''
+  id: 21
+  in_use: true
+  options:
+  - is_correct: true
+    label: A
+    option_text: datetime.strptime()
+  - is_correct: false
+    label: B
+    option_text: datetime.isoformat()
+  - is_correct: false
+    label: C
+    option_text: datetime.timetuple()
+  - is_correct: false
+    label: D
+    option_text: datetime.strftime()
+  question_text: datetime模块中用来解析时间字符串的函数是
+  score: 100
+- count_down: 10
+  difficulty: ''
+  id: 22
+  in_use: true
+  options:
+  - is_correct: true
+    label: A
+    option_text: (.*)是贪婪匹配，(.*?)是非贪婪匹配
+  - is_correct: false
+    label: B
+    option_text: (.*)是非贪婪匹配，(.*?)是贪婪匹配
+  question_text: 正则表达式匹配中(.*)和(.*?)的区别是
+  score: 100
+- count_down: 10
+  difficulty: ''
+  id: 23
+  in_use: true
+  options:
+  - is_correct: false
+    label: A
+    option_text: Django
+  - is_correct: false
+    label: B
+    option_text: Flask
+  - is_correct: false
+    label: C
+    option_text: web.py
+  - is_correct: true
+    label: D
+    option_text: sklearn
+  question_text: 以下哪一个不是Python中的web框架
+  score: 100
+- count_down: 10
+  difficulty: ''
+  id: 24
+  in_use: true
+  options:
+  - is_correct: true
+    label: A
+    option_text: sklearn.linear_model.LinearRegression
+  - is_correct: false
+    label: B
+    option_text: sklearn.linear_model.LogisticRegresion
+  - is_correct: false
+    label: C
+    option_text: sklearn.ensemble.RandomForestRegressor
+  - is_correct: false
+    label: D
+    option_text: sklearn.svm.SVC
+  question_text: 怎样用sklearn训练线性回归模型的类是
+  score: 100
+- count_down: 10
+  difficulty: ''
+  id: 25
+  in_use: true
+  options:
+  - is_correct: true
+    label: A
+    option_text: k-means
+  - is_correct: false
+    label: B
+    option_text: SVM
+  - is_correct: false
+    label: C
+    option_text: 逻辑回归
+  - is_correct: false
+    label: D
+    option_text: 随机森林
+  question_text: 下列属于无监督学习的是
+  score: 100
+- count_down: 10
+  difficulty: ''
+  id: 26
+  in_use: true
+  options:
+  - is_correct: false
+    label: A
+    option_text: 协程是一种特殊的进程
+  - is_correct: true
+    label: B
+    option_text: 协程是一种用户空间线程
+  - is_correct: false
+    label: C
+    option_text: 协程就是携程的别名
+  question_text: 以下对于协程的描述哪个是正确的
   score: 100
