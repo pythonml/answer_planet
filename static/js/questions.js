@@ -12,7 +12,6 @@ var questions = {
             return;
         }
         var question = $this.questions[$this.qstn_id];
-        console.log(question);
         var qstn_content = ($this.qstn_id+1).toString() + ". " + question.question_text;
         var qstn_score = question.score + "分";
         var count_down = question.count_down;
@@ -28,7 +27,7 @@ var questions = {
         $("#qstn-opts").show();
         $this.qstn_id += 1;
 
-        count_down = 10;
+        count_down = 100;
         $this.intv = setInterval(function() {
             if(count_down == -1) {
                 var msg = "时间到";

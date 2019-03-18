@@ -301,17 +301,17 @@
   options:
   - is_correct: true
     label: A
-    option_text: sklearn.linear_model.LinearRegression
+    option_text: linear_model.LinearRegression
   - is_correct: false
     label: B
-    option_text: sklearn.linear_model.LogisticRegresion
+    option_text: linear_model.LogisticRegresion
   - is_correct: false
     label: C
-    option_text: sklearn.ensemble.RandomForestRegressor
+    option_text: ensemble.RandomForestRegressor
   - is_correct: false
     label: D
-    option_text: sklearn.svm.SVC
-  question_text: 怎样用sklearn训练线性回归模型的类是
+    option_text: svm.SVC
+  question_text: 用sklearn训练线性回归模型的类是
   score: 100
 - count_down: 10
   difficulty: ''
