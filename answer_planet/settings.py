@@ -24,6 +24,7 @@ SECRET_KEY = '_ol&((9i_ydu#v32$-^pt2jzahyz$rfy46b%n&)t3*5jgyzdo@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+COMPRESS_ENABLED = True
 
 ALLOWED_HOSTS = ["*",]
 
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'compressor',
 ]
 
 MIDDLEWARE = [
@@ -122,8 +124,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+COMPRESS_ROOT = 'static'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
 SESSION_COOKIE_AGE=31536000 # one year
