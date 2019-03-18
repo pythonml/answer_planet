@@ -16,5 +16,4 @@ urlpatterns = [
     path('get_random_questions/', views.get_random_questions, name='get_random_questions'),
     path('answer/submit/', views.submit_answer, name='submit_answer'),
     path('invite/', views.invite_html, name='invite'),
-    path('invite_pic/', views.invite_pic, name='invite_pic'),
 ]

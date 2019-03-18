@@ -37,17 +37,6 @@ def auth_user(request):
         msg = "用户名或密码不正确".format(username)
         return JsonResponse({"msg": msg, "success": False})
 
-def generate_invite_card(username, invite_code):
-    url = "{}?refcode={}".format(
-        request.build_absolute_uri(reverse("register")),
-        invite_code)
-    img = qrcode.make(url)
-    img_filename = "{}.jpg".format(invite_code)
-    img_path = os.path.join(settings.BASE_DIR, "static", "img", "qrcode", img_filename)
-    img_relurl = "/static/img/qrcode/{}".format(img_filename)
-    img.save(img_path)
-    return render(request, 'mainapp/invite.html', {"username": user.username, "invite_qrcode": img_relurl})
-
 def register_html(request):
     code = request.GET.get("refcode", "")
     request.session["referrer_code"] = code
@@ -109,6 +98,22 @@ def generate_invite_code(text):
         new_text = text + "_"
         return generate_invite_code(new_text)
 
+def generate_invite_pic(username, url):
+    qr_img = qrcode.make(url)
+    qr_img = qr_img.resize((175, 175), Image.ANTIALIAS)
+    basepath = os.path.join(settings.BASE_DIR,
+        "static/img/invite_card/base.png")
+    img = Image.open(basepath)
+    img.paste(qr_img, (520, 1120))
+    draw = ImageDraw.Draw(img)
+    font = ImageFont.truetype("static/font/SourceHanSansSC-Light.otf", 28)
+    by_user = "by.{}".format(username)
+    text_w, text_h = draw.textsize(by_user, font=font)
+    draw.text((695-text_w, 1000), by_user, (108, 117, 125), font=font)
+    filepath = os.path.join(settings.BASE_DIR,
+        "static/img/invite_card/{}.png".format(username))
+    img.save(filepath)
+
 def create_user(request):
     username = request.POST["username"]
     password = request.POST["password"]
@@ -124,6 +129,9 @@ def create_user(request):
 
     found = User.objects.filter(invite_code=referrer_code).count() > 0
     invite_code = generate_invite_code(username)
+    url = "https://answer.shenzhongqiang.com/register/?refcode={}".format(
+        invite_code)
+    generate_invite_pic(username, url)
     user = None
     if referrer_code and found:
         inviter = User.objects.get(invite_code=referrer_code)
@@ -213,34 +221,28 @@ def submit_answer(request):
 @login_required(login_url="/login/")
 def invite_html(request):
     user = request.user
-    invite_code = user.invite_code
-    url = "{}?refcode={}".format(
-        request.build_absolute_uri(reverse("register")),
-        invite_code)
-    img = qrcode.make(url)
-    img_filename = "{}.jpg".format(invite_code)
-    img_path = os.path.join(settings.BASE_DIR, "static", "img", "qrcode", img_filename)
-    img_relurl = "/static/img/qrcode/{}".format(img_filename)
-    img.save(img_path)
-    return render(request, 'mainapp/invite.html', {"username": user.username, "invite_qrcode": img_relurl})
-
-@login_required(login_url="/login/")
-def invite_pic(request):
-    user = request.user
     username = user.username
     invite_code = user.invite_code
-    url = "{}?refcode={}".format(
-        request.build_absolute_uri(reverse("register")),
+    url = "https://answer.shenzhongqiang.com/register/?refcode={}".format(
         invite_code)
-    qr_img = qrcode.make(url)
-    qr_img = qr_img.resize((175, 175), Image.ANTIALIAS)
-    img = Image.open("static/img/invite_card/base.png")
-    img.paste(qr_img, (520, 1120))
-    draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("static/font/SourceHanSansSC-Light.otf", 28)
-    by_user = "by.{}".format(username)
-    text_w, text_h = draw.textsize(by_user, font=font)
-    draw.text((695-text_w, 1000), by_user, (108, 117, 125), font=font)
-    filepath = "static/img/invite_card/{}.png".format(username)
-    img.save(filepath)
-    return render(request, 'mainapp/invite_pic.html')
+    filepath = os.path.join(settings.BASE_DIR,
+        "static/img/invite_card/{}.png".format(username))
+    if not os.path.isfile(filepath):
+        generate_invite_pic(username, url)
+
+    return render(request, 'mainapp/invite.html', {"username": username})
+
+#@login_required(login_url="/login/")
+#def invite_tmpl(request):
+#    user = request.user
+#    invite_code = user.invite_code
+#    url = "{}?refcode={}".format(
+#        request.build_absolute_uri(reverse("register")),
+#        invite_code)
+#    img = qrcode.make(url)
+#    img_filename = "{}.jpg".format(invite_code)
+#    img_path = os.path.join(settings.BASE_DIR, "static", "img", "qrcode", img_filename)
+#    img_relurl = "/static/img/qrcode/{}".format(img_filename)
+#    img.save(img_path)
+#    return render(request, 'mainapp/invite.html', {"username": user.username, "invite_qrcode": img_relurl})
+
