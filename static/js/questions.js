@@ -27,7 +27,7 @@ var questions = {
         $("#qstn-opts").show();
         $this.qstn_id += 1;
 
-        count_down = 100;
+        count_down = 10;
         $this.intv = setInterval(function() {
             if(count_down == -1) {
                 var msg = "时间到";
