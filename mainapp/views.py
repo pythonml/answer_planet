@@ -143,7 +143,7 @@ def create_user(request):
             invited_by=inviter,
             invite_code=invite_code
         )
-        invite_bonus = 100
+        invite_bonus = 200
         inviter_row = User.objects.get(invite_code=referrer_code)
         inviter_event_row = UserEvent.objects.create(user=inviter_row, event_type="invite",
             score=invite_bonus)
