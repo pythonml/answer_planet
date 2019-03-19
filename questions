@@ -307,9 +307,6 @@
     option_text: linear_model.LogisticRegresion
   - is_correct: false
     label: C
-    option_text: ensemble.RandomForestRegressor
-  - is_correct: false
-    label: D
     option_text: svm.SVC
   question_text: 用sklearn训练线性回归模型的类是
   score: 100
